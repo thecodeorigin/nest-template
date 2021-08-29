@@ -29,7 +29,8 @@
     "migrate:run": "yarn typeorm migration:run",
     "migrate:revert": "yarn typeorm migration:revert",
     "schema:drop": "yarn typeorm schema:drop",
-    "schema:reset": "yarn schema:drop && yarn migrate:run && yarn seed:run"
+    "schema:reset": "yarn schema:drop && yarn migrate:run && yarn seed:run",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -57,6 +58,8 @@
     "winston-daily-rotate-file": "^4.5.5"
   },
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "@nestjs/cli": "^8.0.0",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
@@ -73,6 +76,7 @@
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^7.0.0",
     "jest": "27.0.6",
     "plop": "^2.7.4",
     "prettier": "^2.3.2",
