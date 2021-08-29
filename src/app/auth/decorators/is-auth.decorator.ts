@@ -1,4 +1,5 @@
 import { applyDecorators, SetMetadata, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth } from "@nestjs/swagger";
 import { JwtAuthGuard } from "../guards/jwt-auth.guard";
 import { RoleGuard } from "../guards/role-auth.guard";
 
@@ -10,5 +11,6 @@ export function IsAuth(roles?: Array<number>) {
     SetMetadata("roles", roles),
     UseGuards(JwtAuthGuard),
     UseGuards(RoleGuard),
+    ApiBearerAuth(),
   );
 }

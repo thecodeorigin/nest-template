@@ -1,4 +1,5 @@
 import { User } from "@app/user/index.entity";
+import { ApiProperty } from "@nestjs/swagger";
 import {
   Column,
   Entity,
@@ -9,9 +10,11 @@ import {
 
 @Entity("auth_identities")
 export class AuthIdentity {
+  @ApiProperty({ readOnly: true })
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ApiProperty()
   @Column({
     length: 500,
     type: "varchar",
@@ -20,6 +23,7 @@ export class AuthIdentity {
   })
   refreshToken: string;
 
+  @ApiProperty()
   @Column({
     length: 500,
     type: "varchar",
@@ -28,6 +32,7 @@ export class AuthIdentity {
   })
   emailVerificationToken: string;
 
+  @ApiProperty()
   @Column({
     type: "datetime",
     nullable: true,
@@ -35,6 +40,7 @@ export class AuthIdentity {
   })
   emailVerificationValidUntil: string;
 
+  @ApiProperty()
   @Column({
     length: 500,
     type: "varchar",
@@ -42,6 +48,7 @@ export class AuthIdentity {
   })
   passwordResetToken: string;
 
+  @ApiProperty()
   @Column({
     type: "datetime",
     nullable: true,
@@ -49,6 +56,7 @@ export class AuthIdentity {
   })
   passwordResetValidUntil: string;
 
+  @ApiProperty()
   @OneToOne(() => User, (user) => user.auth)
   @JoinColumn({ name: "user_id" })
   user: User;
