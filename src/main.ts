@@ -1,5 +1,5 @@
-import { PORT } from "@core/environments/env";
-import { HttpExceptionsFilter } from "@core/filters/global-exception";
+import { SERVER_PORT } from "@config/env";
+import { GlobalExceptionsFilter } from "@core/filters/global-exception-filter";
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
@@ -14,7 +14,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  app.useGlobalFilters(new HttpExceptionsFilter());
-  await app.listen(PORT);
+  app.useGlobalFilters(new GlobalExceptionsFilter());
+  await app.listen(SERVER_PORT);
 }
 bootstrap();

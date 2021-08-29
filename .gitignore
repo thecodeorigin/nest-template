@@ -34,3 +34,6 @@ lerna-debug.log*
 
 # Environment files
 .env
+
+# Winston audit file
+*-audit.json

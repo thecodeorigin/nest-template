@@ -1,0 +1,6 @@
+import { BaseFilterDTO } from "@core/dto/filter-many";
+import { IsOptional, IsString, MaxLength } from "class-validator";
+
+export class Filter{{properCase name}}DTO extends BaseFilterDTO {
+  // Extend this and use in the filter builder
+}

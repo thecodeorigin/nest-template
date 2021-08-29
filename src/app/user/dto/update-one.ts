@@ -1,5 +1,8 @@
+import { Role } from "@app/role/index.entity";
 import {
+  IsArray,
   IsEmail,
+  IsNumber,
   IsOptional,
   IsString,
   MaxLength,
@@ -7,26 +10,35 @@ import {
 } from "class-validator";
 
 export class UpdateUserDTO {
-  @IsOptional()
-  @IsString()
-  @IsEmail()
   @MinLength(5)
   @MaxLength(100)
+  @IsEmail()
+  @IsString()
+  @IsOptional()
   email: string;
 
-  @IsOptional()
-  @IsString()
   @MinLength(5)
   @MaxLength(100)
+  @IsString()
+  @IsOptional()
   password: string;
 
-  @IsOptional()
   @MinLength(5)
   @MaxLength(50)
+  @IsString()
+  @IsOptional()
   firstname: string;
 
-  @IsOptional()
   @MinLength(5)
   @MaxLength(50)
+  @IsString()
+  @IsOptional()
   lastname: string;
+
+  @IsNumber({}, { each: true })
+  @IsArray()
+  @IsOptional()
+  roleIds: number[];
+
+  roles: Array<Role>;
 }

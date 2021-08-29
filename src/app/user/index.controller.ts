@@ -11,40 +11,45 @@ import {
 } from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-one";
 import { UpdateUserDTO } from "./dto/update-one";
-import { Users } from "./index.entity";
+import { User } from "./index.entity";
 import { UserService } from "./index.service";
-import { FilterManyDTO } from "@core/dto/filter-many";
 import { DeleteResult } from "typeorm";
-import { GetManyDTO } from "@core/dto/get-many";
+import { IsAuth } from "@app/auth/decorators/is-auth.decorator";
+import { FilterUserDTO } from "./dto/filter-many";
 
 @Controller("users")
 export class UserController {
   constructor(public service: UserService) {}
 
   @Post()
-  createOne(@Body() dto: CreateUserDto): Promise<Users> {
+  @IsAuth()
+  createOne(@Body() dto: CreateUserDto): Promise<User> {
     return this.service.createOne(dto);
   }
 
   @Get()
-  getMany(@Query() param: FilterManyDTO): Promise<GetManyDTO<Users>> {
-    return this.service.getMany(param);
+  @IsAuth()
+  findMany(@Query() param: FilterUserDTO) {
+    return this.service.findMany(param);
   }
 
   @Get(":id")
-  getOne(@Param("id", ParseIntPipe) id: number): Promise<Users> {
-    return this.service.getOne(id);
+  @IsAuth()
+  getOne(@Param("id", ParseIntPipe) id: number): Promise<User> {
+    return this.service.findOneOrFail(id);
   }
 
   @Patch(":id")
+  @IsAuth()
   updateOne(
     @Param("id", ParseIntPipe) id: number,
     @Body() dto: UpdateUserDTO,
-  ): Promise<Users> {
+  ): Promise<User> {
     return this.service.updateOne(id, dto);
   }
 
   @Delete(":id")
+  @IsAuth()
   deleteOne(@Param("id", ParseIntPipe) id: number): Promise<DeleteResult> {
     return this.service.deleteOne(id);
   }

@@ -1,4 +1,14 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*spec.ts",
+    "plop",
+    "logs",
+    "src/database",
+    "src/core/commands",
+    "src/core/templates",
+    "plopfile.ts"
+  ]
 }

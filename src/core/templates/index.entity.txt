@@ -1,0 +1,13 @@
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+
+@Entity("{{lowerCase name}}")
+export class {{properCase name}} {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({
+    length: 100,
+    type: "varchar",
+  })
+  meatball: string;
+}

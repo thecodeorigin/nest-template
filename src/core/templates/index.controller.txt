@@ -1,0 +1,50 @@
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  Query,
+} from "@nestjs/common";
+import { Create{{properCase name}}Dto } from "./dto/create-one";
+import { Update{{properCase name}}DTO } from "./dto/update-one";
+import { {{properCase name}} } from "./index.entity";
+import { {{properCase name}}Service } from "./index.service";
+import { BaseFilterDTO } from "@core/dto/filter-many";
+import { DeleteResult } from "typeorm";
+
+@Controller("{{kebabCase name}}")
+export class {{properCase name}}Controller {
+  constructor(public service: {{properCase name}}Service) {}
+
+  @Post()
+  createOne(@Body() dto: Create{{properCase name}}Dto): Promise<{{properCase name}}> {
+    return this.service.createOne(dto);
+  }
+
+  @Get()
+  findMany(@Query() param: BaseFilterDTO) {
+    return this.service.findMany(param);
+  }
+
+  @Get(":id")
+  getOne(@Param("id", ParseIntPipe) id: number): Promise<{{properCase name}}> {
+    return this.service.findOneOrFail(id);
+  }
+
+  @Patch(":id")
+  updateOne(
+    @Param("id", ParseIntPipe) id: number,
+    @Body() dto: Update{{properCase name}}DTO,
+  ): Promise<{{properCase name}}> {
+    return this.service.updateOne(id, dto);
+  }
+
+  @Delete(":id")
+  deleteOne(@Param("id", ParseIntPipe) id: number): Promise<DeleteResult> {
+    return this.service.deleteOne(id);
+  }
+}

@@ -1,32 +1,44 @@
+import { Role } from "@app/role/index.entity";
 import {
+  IsArray,
   IsEmail,
   IsNotEmpty,
+  IsNumber,
   IsString,
   MaxLength,
   MinLength,
 } from "class-validator";
 
 export class CreateUserDto {
-  @IsNotEmpty()
-  @IsString()
-  @IsEmail()
   @MinLength(5)
   @MaxLength(100)
+  @IsEmail()
+  @IsString()
+  @IsNotEmpty()
   email: string;
 
-  @IsNotEmpty()
-  @IsString()
   @MinLength(5)
   @MaxLength(100)
+  @IsString()
+  @IsNotEmpty()
   password: string;
 
-  @IsString()
   @MinLength(5)
   @MaxLength(50)
+  @IsString()
+  @IsNotEmpty()
   firstname: string;
 
-  @IsString()
   @MinLength(5)
   @MaxLength(50)
+  @IsString()
+  @IsNotEmpty()
   lastname: string;
+
+  @IsNumber({}, { each: true })
+  @IsArray()
+  @IsNotEmpty()
+  roleIds: number[];
+
+  roles: Array<Role>;
 }
