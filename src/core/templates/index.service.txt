@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { BaseCrudService } from "@core/services/crud/base-service";
+import { BaseCrudService } from "@core/utils/crud/base-service";
 import { {{properCase name}} } from "./index.entity";
 import { {{properCase name}}Repository } from "./index.repository";
 
