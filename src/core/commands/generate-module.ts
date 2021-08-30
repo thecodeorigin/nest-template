@@ -25,7 +25,7 @@ export default function GenerateModule(plop: NodePlopAPI) {
       "Creating meatball...Please wait" as any,
       {
         type: "add",
-        path: "src/app/{{lowerCase name}}/create-one.ts",
+        path: "src/app/{{lowerCase name}}/dto/create-one.ts",
         templateFile: "src/core/templates/create-one.txt",
         abortOnFail: true,
         skipIfExists: true,
