@@ -19,43 +19,117 @@
     <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
   <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+
+## Contents
+
+- [Contents](#contents)
+- [Description](#description)
+- [Requirement](#requirement)
+- [Prerequisite](#prerequisite)
+  - [Install all the project dependencies](#install-all-the-project-dependencies)
+  - [Sync database migration](#sync-database-migration)
+  - [Seeding database](#seeding-database)
+- [Running the app](#running-the-app)
+- [Special commands](#special-commands)
+- [Test (Coming soon)](#test-coming-soon)
+- [Support](#support)
+- [Stay in touch](#stay-in-touch)
+  - [NestJS authors](#nestjs-authors)
+  - [TheCodeOrigin authors](#thecodeorigin-authors)
+- [License](#license)
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a project template built on [Nest](https://github.com/nestjs/nest) framework. Built by members of TheCodeOrigin team.
 
-## Installation
+## Requirement
+
+- [Git](https://git-scm.com/downloads)
+- [MySQL](https://www.mysql.com/) or [Postgresql](https://www.postgresql.org/)
+- [NodeJS](https://nodejs.org/en/download/) and [npm](https://nodejs.org/en/download/)
+- [Yarn](https://classic.yarnpkg.com/en/docs/getting-started)
+- [Docker](https://www.docker.com/)
+
+## Prerequisite
+
+### Install all the project dependencies
 
 ```bash
-$ npm install
+# Install package using yarn
+$ yarn install
+
+# Install Husky git hook to run precommit
+$ yarn prepare-husky
+```
+
+### Sync database migration
+
+```bash
+# Create a new migration
+$ yarn migrate:create
+
+# Generate new migrations based on entity change
+$ yarn migrate:generate
+
+# Run all migrations
+$ yarn migrate:run
+
+# Revert one specific migration
+$ yarn migrate:revert
+
+```
+
+### Seeding database
+
+```bash
+# Drop all tables in database
+$ yarn schema:drop
+
+# Run all seeding files
+$ yarn seed:run
+
+# Full reset, resync and then seed database again
+$ yarn schema:reset
+
 ```
 
 ## Running the app
 
 ```bash
-# development
-$ npm run start
+# Build the project for production
+$ yarn build
 
-# watch mode
-$ npm run start:dev
+# Development (Without watch)
+$ yarn start
 
-# production mode
-$ npm run start:prod
+# Developement (With watch)
+$ yarn start:dev
+
+# Developement (With watch and debug)
+$ yarn start:debug
+
+# Production (After build)
+$ yarn start:prod
 ```
 
-## Test
+## Special commands
+
+```bash
+# Select between multiple commands
+$ yarn command
+
+# Generate API module inside your project
+$ yarn command generate-module
+
+# Generate a user (Require database connection)
+$ yarn command generate-user
+```
+
+## Test (Coming soon)
 
 ```bash
 # unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+$ yarn test
 ```
 
 ## Support
@@ -64,9 +138,16 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
+### NestJS authors
+
 - Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
 - Website - [https://nestjs.com](https://nestjs.com/)
 - Twitter - [@nestframework](https://twitter.com/nestframework)
+
+### TheCodeOrigin authors
+
+- Author - [Nguyen Quang Tu](https://www.linkedin.com/in/quangtudng/)
+- Partner - [Nguyen Huu Nguyen Y](https://www.linkedin.com/in/nguyen-y-nguyen-huu-472404185/)
 
 ## License
 
