@@ -30,7 +30,7 @@
     "migrate:revert": "yarn typeorm migration:revert",
     "schema:drop": "yarn typeorm schema:drop",
     "schema:reset": "yarn schema:drop && yarn migrate:run && yarn seed:run",
-    "prepare": "husky install"
+    "prepare-husky": "husky install"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
