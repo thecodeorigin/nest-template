@@ -1,23 +1,22 @@
 import {
-  RDS_HOST,
+  MYSQL_HOST,
   SYSTEM_LOG_INFO,
-  RDS_NAME,
-  RDS_PASS,
-  RDS_PORT,
-  RDS_TYPE,
-  RDS_USER,
+  MYSQL_DATABASE,
+  MYSQL_PASSWORD,
+  MYSQL_PORT,
+  MYSQL_USER,
 } from "@config/env";
 import { LoggerFactory } from "@core/utils/loggers/factory";
 import { join } from "path";
 
 const seedingConfig = {
   name: "seeding",
-  type: <any>RDS_TYPE,
-  host: RDS_HOST,
-  port: RDS_PORT,
-  username: RDS_USER,
-  password: RDS_PASS,
-  database: RDS_NAME,
+  type: "mysql",
+  host: MYSQL_HOST,
+  port: MYSQL_PORT,
+  username: MYSQL_USER,
+  password: MYSQL_PASSWORD,
+  database: MYSQL_DATABASE,
   entities: [join(__dirname, "../", "**/*.entity{.ts,.js}")],
   seeds: [join(__dirname, "../", "database/seeds/**/*{.ts,.js}")],
   factories: [join(__dirname, "../", "database/factories/**/*{.ts,.js}")],
