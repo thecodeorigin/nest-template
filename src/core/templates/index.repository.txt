@@ -1,6 +1,0 @@
-import { EntityRepository } from "typeorm";
-import { BaseCrudRepository } from "@core/utils/crud/base-repo";
-import { {{properCase name}} } from "./index.entity";
-
-@EntityRepository({{properCase name}})
-export class {{properCase name}}Repository extends BaseCrudRepository<{{properCase name}}> {}

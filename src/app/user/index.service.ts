@@ -1,31 +1,28 @@
-import { Injectable } from "@nestjs/common";
-import { BaseCrudService } from "@core/utils/crud/base-service";
-import { User } from "./index.entity";
-import { UserRepository } from "./index.repository";
-import { CreateUserDto } from "./dto/create-one";
-import { RoleRepository } from "@app/role/index.repository";
-import { UpdateUserDTO } from "./dto/update-one";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { FilterUserDTO } from "./dto/filter-many";
 
 @Injectable()
-export class UserService extends BaseCrudService<User> {
-  constructor(
-    private repo: UserRepository,
-    private roleRepository: RoleRepository,
-  ) {
-    super(repo);
+export class UserService {
+  users = [
+    { id: 1, name: "Nguyen Quang Tu", age: "24", job: "Backend developer" },
+    { id: 2, name: "John Marston", age: "45", job: "Frontend developer" },
+    { id: 3, name: "Arthur Morgan", age: "50", job: "Full-stack developer" },
+  ];
+
+  findMany(param: FilterUserDTO) {
+    if (param.name) {
+      return this.users.filter((user) => {
+        user.name.toLowerCase().includes(param.name.toLowerCase());
+      });
+    }
+    return this.users;
   }
 
-  async createOne(dto: CreateUserDto): Promise<User> {
-    await this.repo.checkDuplicateEmail(dto.email);
-    const roles = await this.roleRepository.findByIds(dto.roleIds);
-    dto.roles = roles;
-    return super.createOne(dto);
-  }
-
-  async updateOne(id: number, dto: UpdateUserDTO): Promise<User> {
-    await this.repo.checkDuplicateEmail(dto.email);
-    const roles = await this.roleRepository.findByIds(dto.roleIds);
-    dto.roles = roles;
-    return super.updateOne(id, dto);
+  findOne(id: number) {
+    const matchUsers = this.users.filter((user) => user.id == id);
+    if (matchUsers.length == 0) {
+      throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
+    }
+    return matchUsers[0];
   }
 }
