@@ -1,5 +1,5 @@
 import { SYSTEM_LOG_INFO } from "@config/env";
-import { LoggerFactory } from "./factory";
+import { LoggerFactory } from "./env/factory";
 
 /**
  * Logger service, use this class to log something in your project

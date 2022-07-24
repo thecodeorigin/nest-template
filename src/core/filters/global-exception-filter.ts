@@ -1,4 +1,5 @@
-import { HTTP_MESSAGE } from "@core/constants/error-message";
+import { SYSTEM_ID } from "@config/env";
+import { SYSID } from "@core/constants/system";
 import {
   ExceptionFilter,
   Catch,
@@ -7,7 +8,7 @@ import {
   HttpStatus,
 } from "@nestjs/common";
 import { EntityNotFoundError, QueryFailedError } from "typeorm";
-import { ProjectLogger } from "../utils/loggers/log-service";
+import { ProjectLogger } from "../loggers/log-service";
 
 @Catch()
 export class GlobalExceptionsFilter implements ExceptionFilter {
@@ -26,15 +27,15 @@ export class GlobalExceptionsFilter implements ExceptionFilter {
     const response = ctx.getResponse();
     const statusCode = exception.getStatus();
     const customResponse: any = exception.getResponse();
-    const threatCode = [500, 501, 502, 503, 504, 505, 506, 507, 508, 509];
+    const serverErrors = [500, 501, 502, 503, 504, 505, 506, 507, 508, 509];
     const message =
-      customResponse.message ||
-      response.message ||
-      HTTP_MESSAGE.UNKNOWN_SERVER_ERROR;
+      customResponse || response.message || "Unknown server errors";
 
-    if (threatCode.includes(statusCode))
+    if (serverErrors.includes(statusCode))
       ProjectLogger.exception(exception.stack);
-
+    else if (SYSTEM_ID == SYSID.LOCALHOST) {
+      ProjectLogger.info(exception.stack);
+    }
     return response.status(exception.getStatus()).json({
       statusCode,
       message,
@@ -52,15 +53,15 @@ export class GlobalExceptionsFilter implements ExceptionFilter {
     switch (exception.constructor) {
       case EntityNotFoundError:
         statusCode = HttpStatus.NOT_FOUND;
-        message = HTTP_MESSAGE.NOT_FOUND;
+        message = "Not found";
         break;
       case QueryFailedError:
         statusCode = HttpStatus.BAD_REQUEST;
-        message = HTTP_MESSAGE.QUERY_ERROR;
+        message = "Query error";
         break;
       default:
         statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-        message = HTTP_MESSAGE.UNKNOWN_SERVER_ERROR;
+        message = "Unknown server error";
         break;
     }
     ProjectLogger.exception(exception.stack);

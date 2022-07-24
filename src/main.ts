@@ -33,9 +33,7 @@ async function bootstrap() {
     app,
     new DocumentBuilder()
       .setTitle("TheCodeOrigin")
-      .setDescription(
-        "This is NestJS Simple Base with NestJSX Crud microframework",
-      )
+      .setDescription("This is NestJS Simple Base")
       .addBearerAuth()
       .setVersion("1.0.0")
       .setContact(
