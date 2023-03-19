@@ -1,5 +1,5 @@
-import { SERVER_PORT } from "@config/env";
-import { GlobalExceptionsFilter } from "@core/filters/global-exception-filter";
+import { SERVER_PORT } from "@api/config/env";
+import { GlobalExceptionsFilter } from "@api/core/filters/global-exception-filter";
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import {
@@ -19,7 +19,7 @@ async function bootstrap() {
       whitelist: true,
       stopAtFirstError: true,
       transform: true,
-    }),
+    })
   );
   const swaggerSetupOptions: SwaggerCustomOptions = {
     explorer: true,
@@ -39,12 +39,12 @@ async function bootstrap() {
       .setContact(
         "Nguyễn Quang Tú",
         "https://www.linkedin.com/in/quangtudng",
-        "quangtupct@gmail.com",
+        "quangtupct@gmail.com"
       )
       .build(),
     {
       deepScanRoutes: true,
-    },
+    }
   );
 
   SwaggerModule.setup("docs", app, document, swaggerSetupOptions);

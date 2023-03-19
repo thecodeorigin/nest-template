@@ -1,8 +1,8 @@
 import { LoggerOptions } from "typeorm";
-import { LocalLogger } from "@core/loggers/env/local";
-import { ProductionLogger } from "@core/loggers/env/production";
-import { SYSTEM_ID } from "@config/env";
-import { SYSID } from "@core/constants/system";
+import { LocalLogger } from "@api/core/loggers/env/local";
+import { ProductionLogger } from "@api/core/loggers/env/production";
+import { SYSTEM_ID } from "@api/config/env";
+import { SYSID } from "@api/core/constants/system";
 
 const loggerMap = {
   [SYSID.LOCALHOST]: LocalLogger,
@@ -11,7 +11,7 @@ const loggerMap = {
 
 export class LoggerFactory {
   static getInstance(
-    loggerOptions: LoggerOptions,
+    loggerOptions: LoggerOptions
   ): LocalLogger | ProductionLogger {
     const instance = loggerMap[SYSTEM_ID];
     return new instance(loggerOptions);

@@ -1,0 +1,29 @@
+{
+  "extends": "../../tsconfig.json",
+  "files": [],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@api/app/*": [
+        "./src/app/*"
+      ],
+      "@api/config/*": [
+        "./src/config/*"
+      ],
+      "@api/core/*": [
+        "./src/core/*"
+      ],
+      "@api/test/*": [
+        "./src/test/*"
+      ],
+    }
+  },
+  "references": [
+    {
+      "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ]
+}

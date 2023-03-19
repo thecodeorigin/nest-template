@@ -2,8 +2,8 @@ import { Logger, LoggerOptions, QueryRunner } from "typeorm";
 import { createLogger, Logger as WinstonLogger, format } from "winston";
 
 import { Format } from "logform";
-import { LoggerLevel } from "@core/type/logger-level";
-import * as DailyRotateFile from "winston-daily-rotate-file";
+import { LoggerLevel } from "@api/core/type/logger-level";
+import DailyRotateFile from "winston-daily-rotate-file";
 /**
  * Custom file logger
  */
@@ -16,7 +16,7 @@ export class LocalLogger implements Logger {
   constructor(loggerOptions: LoggerOptions) {
     this.loggerOptions = loggerOptions;
     this.customFormat = format.printf(
-      ({ message, level, timestamp }) => `[${timestamp}][${level}]: ${message}`,
+      ({ message, level, timestamp }) => `[${timestamp}][${level}]: ${message}`
     );
     const options = (filename: string) => {
       const transport = new DailyRotateFile({
@@ -55,7 +55,7 @@ export class LocalLogger implements Logger {
     error: string | Error,
     query: string,
     parameters?: any[],
-    _queryRunner?: QueryRunner,
+    _queryRunner?: QueryRunner
   ) {
     const message = `${query} - ${
       parameters ? JSON.stringify(parameters) : ""
@@ -73,7 +73,7 @@ export class LocalLogger implements Logger {
     time: number,
     query: string,
     parameters?: any[],
-    _queryRunner?: QueryRunner,
+    _queryRunner?: QueryRunner
   ) {
     const message = `${query} - ${time} - ${
       parameters ? JSON.stringify(parameters) : ""
@@ -101,7 +101,7 @@ export class LocalLogger implements Logger {
   log(
     level: "log" | "info" | "warn" | "error",
     message: any,
-    _queryRunner?: QueryRunner,
+    _queryRunner?: QueryRunner
   ) {
     switch (level) {
       case "log":

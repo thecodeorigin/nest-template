@@ -1,5 +1,5 @@
-import { SYSTEM_ID } from "@config/env";
-import { SYSID } from "@core/constants/system";
+import { SYSTEM_ID } from "@api/config/env";
+import { SYSID } from "@api/core/constants/system";
 import {
   ExceptionFilter,
   Catch,
@@ -32,9 +32,9 @@ export class GlobalExceptionsFilter implements ExceptionFilter {
       customResponse || response.message || "Unknown server errors";
 
     if (serverErrors.includes(statusCode))
-      ProjectLogger.exception(exception.stack);
+      ProjectLogger.exception(exception.stack || "");
     else if (SYSTEM_ID == SYSID.LOCALHOST) {
-      ProjectLogger.info(exception.stack);
+      ProjectLogger.info(exception.stack || "");
     }
     return response.status(exception.getStatus()).json({
       statusCode,

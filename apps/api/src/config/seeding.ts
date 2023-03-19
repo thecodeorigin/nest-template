@@ -5,8 +5,8 @@ import {
   MYSQL_PASSWORD,
   MYSQL_PORT,
   MYSQL_USER,
-} from "@config/env";
-import { LoggerFactory } from "@core/utils/loggers/factory";
+} from "@api/config/env";
+import { LoggerFactory } from "@api/core/loggers/env/factory";
 import { join } from "path";
 
 const seedingConfig = {

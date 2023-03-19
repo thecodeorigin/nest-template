@@ -1,4 +1,4 @@
-import { UserModule } from "@app/user/index.module";
+import { UserModule } from "@api/app/user/index.module";
 import { Module } from "@nestjs/common";
 
 @Module({

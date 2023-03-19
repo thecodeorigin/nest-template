@@ -1,4 +1,4 @@
-version: '3.3'
+version: "3.3"
 
 services:
   mysql:
@@ -20,8 +20,8 @@ services:
       context: .
       dockerfile: ./docker/Dockerfile.dev
     volumes:
-      - ./src:/home/app/backend/src
-      - ./logs:/home/app/backend/logs
+      - ./src:/home/app/api/src
+      - ./logs:/home/app/api/logs
     container_name: api
     env_file: .env
     ports:
