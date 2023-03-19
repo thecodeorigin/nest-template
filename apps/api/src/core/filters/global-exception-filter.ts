@@ -1,9 +1,9 @@
 import { SYSTEM_ID } from "@api/config/env";
 import { SYSID } from "@api/core/constants/system";
 import {
-  ExceptionFilter,
-  Catch,
   ArgumentsHost,
+  Catch,
+  ExceptionFilter,
   HttpException,
   HttpStatus,
 } from "@nestjs/common";
@@ -33,7 +33,7 @@ export class GlobalExceptionsFilter implements ExceptionFilter {
 
     if (serverErrors.includes(statusCode))
       ProjectLogger.exception(exception.stack || "");
-    else if (SYSTEM_ID == SYSID.LOCALHOST) {
+    else if (SYSTEM_ID === SYSID.LOCALHOST) {
       ProjectLogger.info(exception.stack || "");
     }
     return response.status(exception.getStatus()).json({
@@ -51,18 +51,21 @@ export class GlobalExceptionsFilter implements ExceptionFilter {
     let message = exception.message;
     let statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
     switch (exception.constructor) {
-      case EntityNotFoundError:
+      case EntityNotFoundError: {
         statusCode = HttpStatus.NOT_FOUND;
         message = "Not found";
         break;
-      case QueryFailedError:
+      }
+      case QueryFailedError: {
         statusCode = HttpStatus.BAD_REQUEST;
         message = "Query error";
         break;
-      default:
+      }
+      default: {
         statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
         message = "Unknown server error";
         break;
+      }
     }
     ProjectLogger.exception(exception.stack);
 

@@ -1,13 +1,13 @@
+import { join } from "node:path";
 import {
-  MYSQL_HOST,
-  SYSTEM_LOG_INFO,
   MYSQL_DATABASE,
+  MYSQL_HOST,
   MYSQL_PASSWORD,
   MYSQL_PORT,
   MYSQL_USER,
+  SYSTEM_LOG_INFO,
 } from "@api/config/env";
 import { LoggerFactory } from "@api/core/loggers/env/factory";
-import { join } from "path";
 
 const seedingConfig = {
   name: "seeding",

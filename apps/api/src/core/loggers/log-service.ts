@@ -4,16 +4,16 @@ import { LoggerFactory } from "./env/factory";
 /**
  * Logger service, use this class to log something in your project
  */
-export class ProjectLogger {
-  static exception(message: string) {
+export const ProjectLogger = {
+  exception(message: string) {
     LoggerFactory.getInstance(SYSTEM_LOG_INFO).log("error", message);
-  }
+  },
 
-  static info(message: string) {
+  info(message: string) {
     LoggerFactory.getInstance(SYSTEM_LOG_INFO).log("info", message);
-  }
+  },
 
-  static warn(message: string) {
+  warn(message: string) {
     LoggerFactory.getInstance(SYSTEM_LOG_INFO).log("warn", message);
-  }
-}
+  },
+};
