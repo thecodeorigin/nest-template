@@ -19,8 +19,8 @@ export class UserService {
   }
 
   findOne(id: number) {
-    const matchUsers = this.users.filter((user) => user.id == id);
-    if (matchUsers.length == 0) {
+    const matchUsers = this.users.filter((user) => user.id === id);
+    if (matchUsers.length === 0) {
       throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
     }
     return matchUsers[0];

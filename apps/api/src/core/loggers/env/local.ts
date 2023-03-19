@@ -1,5 +1,5 @@
 import { Logger, LoggerOptions, QueryRunner } from "typeorm";
-import { createLogger, Logger as WinstonLogger, format } from "winston";
+import { Logger as WinstonLogger, createLogger, format } from "winston";
 
 import { Format } from "logform";
 import { LoggerLevel } from "@api/core/type/logger-level";
@@ -20,7 +20,7 @@ export class LocalLogger implements Logger {
     );
     const options = (filename: string) => {
       const transport = new DailyRotateFile({
-        filename: filename + "-%DATE%.log",
+        filename: `${filename}-%DATE%.log`,
         datePattern: "YYYY-MM-DD",
         zippedArchive: true,
         maxSize: "50m",
@@ -45,7 +45,8 @@ export class LocalLogger implements Logger {
       parameters ? JSON.stringify(parameters) : ""
     }`;
 
-    if (this.isLevelAllowed("query")) this.queryWrite("info", message);
+    if (this.isLevelAllowed("query"))
+this.queryWrite("info", message);
   }
 
   /**
@@ -78,21 +79,24 @@ export class LocalLogger implements Logger {
     const message = `${query} - ${time} - ${
       parameters ? JSON.stringify(parameters) : ""
     }`;
-    if (this.isLevelAllowed("warn")) this.queryWrite("warn", message);
+    if (this.isLevelAllowed("warn"))
+this.queryWrite("warn", message);
   }
 
   /**
    * Logs events from the schema build process.
    */
   logSchemaBuild(message: string, _queryRunner?: QueryRunner) {
-    if (this.isLevelAllowed("schema")) this.queryWrite("info", message);
+    if (this.isLevelAllowed("schema"))
+this.queryWrite("info", message);
   }
 
   /**
    * Logs events from the migrations run process.
    */
   logMigration(message: string, _queryRunner?: QueryRunner) {
-    if (this.isLevelAllowed("migration")) this.queryWrite("info", message);
+    if (this.isLevelAllowed("migration"))
+this.queryWrite("info", message);
   }
 
   /**
@@ -104,18 +108,26 @@ export class LocalLogger implements Logger {
     _queryRunner?: QueryRunner
   ) {
     switch (level) {
-      case "log":
-        if (this.isLevelAllowed("log")) this.coreWrite(level, message);
+      case "log": {
+        if (this.isLevelAllowed("log"))
+this.coreWrite(level, message);
         break;
-      case "info":
-        if (this.isLevelAllowed("info")) this.coreWrite(level, message);
+      }
+      case "info": {
+        if (this.isLevelAllowed("info"))
+this.coreWrite(level, message);
         break;
-      case "warn":
-        if (this.isLevelAllowed("warn")) this.coreWrite(level, message);
+      }
+      case "warn": {
+        if (this.isLevelAllowed("warn"))
+this.coreWrite(level, message);
         break;
-      case "error":
-        if (this.isLevelAllowed("error")) this.coreWrite(level, message);
+      }
+      case "error": {
+        if (this.isLevelAllowed("error"))
+this.coreWrite(level, message);
         break;
+      }
     }
   }
 
@@ -136,7 +148,7 @@ export class LocalLogger implements Logger {
   private queryWrite(level: "log" | "info" | "warn" | "error", message: any) {
     this.queryLogger.log({
       level,
-      message: message,
+      message,
       timestamp: new Date().toISOString(),
     });
   }
@@ -145,7 +157,7 @@ export class LocalLogger implements Logger {
     return (
       this.loggerOptions === "all" ||
       (Array.isArray(this.loggerOptions) &&
-        this.loggerOptions.indexOf(level) !== -1)
+        this.loggerOptions.includes(level))
     );
   }
 }

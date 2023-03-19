@@ -3,10 +3,10 @@ import { GlobalExceptionsFilter } from "@api/core/filters/global-exception-filte
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import {
-  SwaggerModule,
   DocumentBuilder,
-  SwaggerCustomOptions,
   OpenAPIObject,
+  SwaggerCustomOptions,
+  SwaggerModule,
 } from "@nestjs/swagger";
 import { AppModule } from "./app.module";
 
@@ -52,4 +52,6 @@ async function bootstrap() {
   app.useGlobalFilters(new GlobalExceptionsFilter());
   await app.listen(SERVER_PORT);
 }
+
+// eslint-disable-next-line unicorn/prefer-top-level-await
 bootstrap();

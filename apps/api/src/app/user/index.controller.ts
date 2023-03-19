@@ -1,6 +1,6 @@
 import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
-import { UserService } from "./index.service";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
+import { UserService } from "./index.service";
 import { FilterUserDTO } from "./dto/filter-many";
 
 @ApiTags("users")

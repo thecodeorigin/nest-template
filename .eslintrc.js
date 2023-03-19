@@ -1,4 +1,3 @@
-// eslint-disable-next-line unicorn/prefer-module
 module.exports = {
   root: true,
   env: {
@@ -8,16 +7,18 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  extends: ["@antfu", "plugin:unicorn/all"],
+  extends: ["@antfu", "plugin:unicorn/recommended"],
   plugins: ["unicorn"],
   rules: {
     // Default rules
     "arrow-parens": ["error", "always"],
     "comma-dangle": "off",
     "curly": "off",
+    "array-callback-return": "off",
     "no-console": "warn",
     "operator-linebreak": "off",
     // Unicorn rules
+    "unicorn/prefer-module": "off",
     "unicorn/filename-case": [
       "error",
       {

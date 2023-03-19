@@ -1,15 +1,15 @@
+import { join } from "node:path";
 import {
-  MYSQL_HOST,
-  SYSTEM_LOG_INFO,
-  MYSQL_MAX_QUERY_TIME,
   MYSQL_DATABASE,
+  MYSQL_HOST,
+  MYSQL_MAX_QUERY_TIME,
   MYSQL_PASSWORD,
   MYSQL_PORT,
   MYSQL_USER,
+  SYSTEM_LOG_INFO,
 } from "@api/config/env";
 import { LoggerFactory } from "@api/core/loggers/env/factory";
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
-import { join } from "path";
 
 const typeOrmConfig: TypeOrmModuleOptions = {
   type: "mysql",
