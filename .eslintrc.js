@@ -1,54 +1,86 @@
+// eslint-disable-next-line unicorn/prefer-module
 module.exports = {
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    project: "tsconfig.json",
-    sourceType: "module",
-  },
-  plugins: ["@typescript-eslint/eslint-plugin"],
-  extends: [
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "prettier"
-  ],
   root: true,
   env: {
-    node: true,
-    jest: true,
+    es2022: true,
   },
-  ignorePatterns: [".eslintrc.js"],
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+  },
+  extends: ["@antfu", "plugin:unicorn/all"],
+  plugins: ["unicorn"],
   rules: {
+    // Default rules
+    "arrow-parens": ["error", "always"],
+    "comma-dangle": "off",
+    "curly": "off",
     "no-console": "warn",
-    "@typescript-eslint/interface-name-prefix": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
-    "prettier/prettier": [
+    "operator-linebreak": "off",
+    // Unicorn rules
+    "unicorn/filename-case": [
       "error",
       {
-        "endOfLine": "auto"
+        cases: {
+          kebabCase: true,
+          pascalCase: true,
+        },
       },
     ],
-    "@typescript-eslint/naming-convention": [
+    "unicorn/no-nested-ternary": "off",
+    "unicorn/no-unused-properties": "off",
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/consistent-function-scoping": "off",
+    "unicorn/no-null": "off",
+    // Typescript rules
+    "@typescript-eslint/consistent-type-imports": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/brace-style": "off",
+    "@typescript-eslint/member-delimiter-style": ["error", {
+      multiline: {
+        delimiter: "semi",
+        requireLast: true,
+      },
+      singleline: {
+        delimiter: "semi",
+        requireLast: false,
+      },
+      multilineDetection: "brackets",
+    }],
+    "@typescript-eslint/semi": ["error", "always"],
+    "@typescript-eslint/quotes": ["error", "double", { avoidEscape: true }],
+    "@typescript-eslint/comma-dangle": [
       "warn",
       {
-        selector: "default",
-        format: ["strictCamelCase", "UPPER_CASE"],
-        leadingUnderscore: "allow",
-      },
-      {
-        selector: ["variable", "function"],
-        format: ["PascalCase"],
-        filter: {
-          "regex": "^(?=Get|Is|Has|Generate[A-Z])",
-          "match": true
-        }
-      },
-      {
-        selector: "typeLike",
-        format: ["PascalCase"],
+        arrays: "always-multiline",
+        objects: "always-multiline",
+        imports: "always-multiline",
+        enums: "always-multiline",
+        generics: "never",
+        tuples: "never",
+        exports: "never",
+        functions: "never",
       },
     ],
+    // Vue rules
+    "vue/html-self-closing": ["warn", {
+      svg: "always",
+      html: {
+        void: "always",
+        normal: "always",
+      },
+    }],
+    "vue/operator-linebreak": [
+      "error",
+      "after",
+    ],
   },
+  overrides: [
+    {
+      files: ["*.vue"],
+      rules: {
+        "vue/singleline-html-element-content-newline": "off",
+      },
+    },
+  ],
 };

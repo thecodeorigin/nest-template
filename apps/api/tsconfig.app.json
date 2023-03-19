@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/api",
+    "module": "CommonJS",
+    "target": "ES2015",
+    "moduleResolution": "node",
+    "types": [
+      "node"
+    ],
+    "emitDecoratorMetadata": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+  },
+  "include": [
+    "./**/*.ts",
+    "../../types/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+  ]
+}

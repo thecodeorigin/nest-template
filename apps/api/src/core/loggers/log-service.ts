@@ -1,4 +1,4 @@
-import { SYSTEM_LOG_INFO } from "@config/env";
+import { SYSTEM_LOG_INFO } from "@api/config/env";
 import { LoggerFactory } from "./env/factory";
 
 /**
