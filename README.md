@@ -45,9 +45,8 @@ This is a project template built on [Nest](https://github.com/nestjs/nest) frame
 ## Requirement
 
 - [Git](https://git-scm.com/downloads)
-- [MySQL](https://www.mysql.com/) or [Postgresql](https://www.postgresql.org/)
-- [NodeJS](https://nodejs.org/en/download/) and [npm](https://nodejs.org/en/download/)
-- [Yarn](https://classic.yarnpkg.com/en/docs/getting-started)
+- [Pnpm](https://pnpm.io/)
+- [NodeJS](https://github.com/nvm-sh/nvm)
 - [Docker](https://www.docker.com/)
 
 ## Prerequisite
@@ -55,94 +54,27 @@ This is a project template built on [Nest](https://github.com/nestjs/nest) frame
 ### Install all the project dependencies
 
 ```bash
-# Install package using yarn
-$ yarn install
+# Install package using pnpm
+$ pnpm install
 
 # Install Husky git hook to run precommit
-$ yarn prepare-husky
-```
-
-### Sync database migration
-
-```bash
-# Create a new migration
-$ yarn migrate:create
-
-# Generate new migrations based on entity change
-$ yarn migrate:generate
-
-# Run all migrations
-$ yarn migrate:run
-
-# Revert one specific migration
-$ yarn migrate:revert
-
-```
-
-### Seeding database
-
-```bash
-# Drop all tables in database
-$ yarn schema:drop
-
-# Run all seeding files
-$ yarn seed:run
-
-# Full reset, resync and then seed database again
-$ yarn schema:reset
-
+$ pnpm prepare-husky
 ```
 
 ## Running the app
 
 ```bash
 # Build the project for production
-$ yarn build
+$ pnpm build
 
-# Development (Without watch)
-$ yarn start
-
-# Developement (With watch)
-$ yarn start:dev
-
-# Developement (With watch and debug)
-$ yarn start:debug
+# Developement
+$ pnpm serve
 
 # Production (After build)
-$ yarn start:prod
+$ pnpm start
 ```
-
-## Special commands
-
-```bash
-# Select between multiple commands
-$ yarn command
-
-# Generate API module inside your project
-$ yarn command generate-module
-
-# Generate a user (Require database connection)
-$ yarn command generate-user
-```
-
-## Test (Coming soon)
-
-```bash
-# unit tests
-$ yarn test
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
 ## Stay in touch
-
-### NestJS authors
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ### TheCodeOrigin authors
 

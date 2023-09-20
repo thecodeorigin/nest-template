@@ -6,7 +6,7 @@ COPY . $HOME/api/
 
 WORKDIR $HOME/api
 
-RUN yarn install && yarn build
+RUN pnpm install && pnpm build
 
 # Add docker-compose-wait tool -------------------
 ENV WAIT_VERSION 2.7.2
