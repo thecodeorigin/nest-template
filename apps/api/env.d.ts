@@ -10,6 +10,5 @@ declare namespace NodeJS {
     MYSQL_HOST?: string;
     MYSQL_PORT?: number;
     MYSQL_MAX_QUERY_TIME?: number;
-    SYSTEM_LOG_INFO?: string;
   }
 }

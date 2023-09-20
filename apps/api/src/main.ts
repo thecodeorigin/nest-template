@@ -1,4 +1,3 @@
-import { SERVER_PORT } from "@api/config/env";
 import { GlobalExceptionsFilter } from "@api/core/filters/global-exception-filter";
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
@@ -50,7 +49,7 @@ async function bootstrap() {
   SwaggerModule.setup("docs", app, document, swaggerSetupOptions);
 
   app.useGlobalFilters(new GlobalExceptionsFilter());
-  await app.listen(SERVER_PORT);
+  await app.listen(process.env.SERVER_PORT || 3000);
 }
 
 // eslint-disable-next-line unicorn/prefer-top-level-await

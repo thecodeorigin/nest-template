@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^8.4.7",
+    "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^9.4.3",
     "@nestjs/jwt": "^8.0.1",
     "@nestjs/passport": "^8.2.2",
@@ -39,8 +40,7 @@
     "swagger-ui-express": "^4.6.3",
     "typeorm": "^0.2.45",
     "typeorm-seeding": "^1.6.1",
-    "winston": "^3.10.0",
-    "winston-daily-rotate-file": "^4.7.1"
+    "winston": "^3.10.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.37.0",

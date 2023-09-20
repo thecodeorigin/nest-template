@@ -1,5 +1,3 @@
-import { SYSTEM_ID } from "@api/config/env";
-import { SYSID } from "@api/core/constants/system";
 import {
   ArgumentsHost,
   Catch,
@@ -8,7 +6,7 @@ import {
   HttpStatus,
 } from "@nestjs/common";
 import { EntityNotFoundError, QueryFailedError } from "typeorm";
-import { ProjectLogger } from "../loggers/log-service";
+import { AppLog } from "../loggers/local";
 
 @Catch()
 export class GlobalExceptionsFilter implements ExceptionFilter {
@@ -19,32 +17,21 @@ export class GlobalExceptionsFilter implements ExceptionFilter {
     return this.handleSystemException(exception, host);
   }
 
-  /**
-   * HttpException error handler. Recommended for customized error message.
-   */
   private handleHttpException(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const statusCode = exception.getStatus();
     const customResponse: any = exception.getResponse();
-    const serverErrors = [500, 501, 502, 503, 504, 505, 506, 507, 508, 509];
     const message =
       customResponse || response.message || "Unknown server errors";
 
-    if (serverErrors.includes(statusCode))
-      ProjectLogger.exception(exception.stack || "");
-    else if (SYSTEM_ID === SYSID.LOCALHOST) {
-      ProjectLogger.info(exception.stack || "");
-    }
+    new AppLog().exception(exception.stack || "");
     return response.status(exception.getStatus()).json({
       statusCode,
       message,
     });
   }
 
-  /**
-   * System exception error handler. This will throw out generic messages if invoked.
-   */
   private handleSystemException(exception: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
@@ -61,13 +48,8 @@ export class GlobalExceptionsFilter implements ExceptionFilter {
         message = "Query error";
         break;
       }
-      default: {
-        statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-        message = "Unknown server error";
-        break;
-      }
     }
-    ProjectLogger.exception(exception.stack);
+    AppLog.exception(exception.stack);
 
     return response.status(statusCode).json({
       statusCode,
