@@ -1,6 +1,6 @@
 {
-    "*.{js,ts}": [
-        "yarn lint:fix",
-        "yarn format"
-    ]
+  "*.{js,ts}": [
+    "pnpm lint:fix",
+    "pnpm format"
+  ]
 }

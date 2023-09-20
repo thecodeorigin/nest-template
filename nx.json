@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "paradox-dev-tool",
+  "npmScope": "nest-project",
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx/tasks-runners/default",
